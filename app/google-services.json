@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "11583553703",
+    "firebase_url": "https://esp32-doorbell-hutech.firebaseio.com",
+    "project_id": "esp32-doorbell-hutech",
+    "storage_bucket": "esp32-doorbell-hutech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11583553703:android:41d46723671b61cbc95b82",
+        "android_client_info": {
+          "package_name": "com.example.esp32app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11583553703-1qj7upitsmlbvip0qgrmo7i14qj9a6rp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD92m-smOgPUiA6p8Cqq7p8veUc2EG-Q4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11583553703-1qj7upitsmlbvip0qgrmo7i14qj9a6rp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11583553703:android:14dfcdea87392705c95b82",
+        "android_client_info": {
+          "package_name": "com.example.firebase_recycleview_ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11583553703-9rb0hjknr3ii3a5imdcfthhkrjgvbaar.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase_recycleview_ai",
+            "certificate_hash": "283f81e5fcb35b26ea5884969c22792449feae1e"
+          }
+        },
+        {
+          "client_id": "11583553703-1qj7upitsmlbvip0qgrmo7i14qj9a6rp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD92m-smOgPUiA6p8Cqq7p8veUc2EG-Q4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11583553703-1qj7upitsmlbvip0qgrmo7i14qj9a6rp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
