@@ -40,11 +40,12 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp">
 
         <Button
             android:id="@+id/btnEnroll"
@@ -52,13 +53,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Thêm " />
+
         <Button
             android:id="@+id/btnProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
             android:text="Tài khoản " />
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </RelativeLayout>
 
 
 </RelativeLayout>

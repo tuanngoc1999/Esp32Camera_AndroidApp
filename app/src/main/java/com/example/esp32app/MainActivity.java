@@ -2,6 +2,9 @@ package com.example.esp32app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+
+import android.app.Notification;
 import android.content.Intent;
 import android.net.Uri;
 import android.graphics.Bitmap;
@@ -27,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     TextView name;
     ImageView imgView;
     Button btn, addFace, profile;
-    Uri image_uri;
     DatabaseReference rff = FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn);
         addFace = findViewById(R.id.btnEnroll);
         profile = findViewById(R.id.btnProfile);
-        //takePhoto = findViewById(R.id.btnTakePhoto);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 String photoBase64 = snapshot.child("esp32-cam").child("photo").getValue().toString();
                 String data = photoBase64.substring(photoBase64.indexOf(",") +1);
                 name.setText(faceName);
-                //photo.setText(photoBase64);
-
-                //byte[] decod = com.example.esp32app.Base64.decode(photoBase64, 4);
+                //Decode base64 to bitmap
                 byte[] decoderString = Base64.decode(data.getBytes(), Base64.DEFAULT);
                 Bitmap decoded = BitmapFactory.decodeByteArray(decoderString, 0, decoderString.length);
-
                 imgView.setImageBitmap(decoded);
             }
 
