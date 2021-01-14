@@ -1,17 +1,17 @@
-package com.example.esp32app;
+package com.example.esp32app.User;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.esp32app.Common.MainActivity;
+import com.example.esp32app.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
-TextView name, mail;
+TextView name, mail, tname;
 Button backHome;
 private FirebaseAuth mAuth;
 DatabaseReference rff = FirebaseDatabase.getInstance().getReference();
@@ -28,16 +28,17 @@ String uId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_profile);
         name = findViewById(R.id.txtName_profile);
+        tname = findViewById(R.id.txtName_profile_name);
         mail = findViewById(R.id.txtMail_profile);
-        backHome = findViewById(R.id.btnBack);
         uId = mAuth.getCurrentUser().getUid();
-        backHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+        backHome = findViewById(R.id.btnBack);
+        backHome.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -48,9 +49,10 @@ String uId;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String profileName = snapshot.child("Users").child(uId).child("name").getValue().toString();
-                String profilemail = snapshot.child("Users").child(uId).child("mail").getValue().toString();
+                String profileEmail = snapshot.child("Users").child(uId).child("mail").getValue().toString();
                 name.setText(profileName);
-                mail.setText(profilemail);
+                mail.setText(profileEmail);
+                tname.setText(profileName);
             }
 
             @Override
@@ -59,4 +61,8 @@ String uId;
             }
         });
     }
+
+
+
+
 }

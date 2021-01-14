@@ -1,4 +1,4 @@
-package com.example.esp32app;
+package com.example.esp32app.Common.LoginSignUp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.esp32app.Common.MainActivity;
+import com.example.esp32app.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,9 +24,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     TextView forgotPwd, regis, email, pwd;
     Button btnSignIn;
+
+//    CheckBox rememberMe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
         regis = findViewById(R.id.txtRegis);
@@ -34,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignIn.setOnClickListener(this);
         forgotPwd = findViewById(R.id.txtForgotPwd);
         forgotPwd.setOnClickListener(this);
+
+//        rememberMe = findViewById(R.id.remember_me);
     }
     @Override
     public void onStart() {
@@ -46,18 +54,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v){
         switch (v.getId()){
             case R.id.txtRegis:
-                startActivity(new Intent(this, RegisActivity.class));
+                signUp();
                 break;
             case R.id.btnLogin:
                 signIn();
                 break;
             case R.id.txtForgotPwd:
-                startActivity(new Intent(this, ForgotPwdActivity.class));
+                resetPassword();
+                break;
+            case R.id.login_back_button:
+                loginBack();
+                break;
         }
+
     }
+
+    private void loginBack() {
+        Intent loginBack = new Intent(this, StartScreen.class);
+        startActivity(loginBack);
+    }
+
+    private void resetPassword() {
+        Intent rsPassIntent = new Intent(this, ForgotPwdActivity.class);
+        startActivity(rsPassIntent);
+    }
+
+    private void signUp() {
+        Intent signUpIntent = new Intent(this, RegisActivity.class);
+        startActivity(signUpIntent);
+    }
+
     private void signIn(){
         String mail = email.getText().toString().trim();
         String pass = pwd.getText().toString().trim();
+        Intent loginIntent = new Intent(this, MainActivity.class);
         if(mail.isEmpty())
         {
             email.setError("Vui lòng nhập email!");
@@ -85,7 +115,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    startActivity(loginIntent);
                 }
                 else
                     Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();

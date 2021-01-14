@@ -9,22 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Esp32App">
-        <activity android:name=".ProfileActivity">
-
-        </activity>
-        <activity android:name=".EnrollActivity">
-
-        </activity>
-        <activity android:name=".ForgotPwdActivity" />
-        <activity android:name=".RegisActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Admin.AboutUsActivity"></activity>
+        <activity android:name=".Common.LoginSignUp.StartScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".User.ProfileActivity" />
+        <activity android:name=".EnrollActivity" />
+        <activity android:name=".Common.LoginSignUp.ForgotPwdActivity" />
+        <activity android:name=".Common.LoginSignUp.RegisActivity" />
+        <activity android:name=".Common.LoginSignUp.LoginActivity"></activity>
+        <activity android:name=".Common.MainActivity" />
     </application>
 
 </manifest>
