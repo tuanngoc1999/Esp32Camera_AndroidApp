@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.esp32app.Common.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +31,7 @@ DatabaseReference rff = FirebaseDatabase.getInstance().getReference();
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EnrollActivity.this, MainActivity.class));
+                finish();
             }
         });
         addFace.setOnClickListener(new View.OnClickListener() {

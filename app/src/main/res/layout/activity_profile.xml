@@ -1,83 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    android:orientation="vertical"
+    tools:context=".User.ProfileActivity">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="77dp">
+        android:layout_height="300dp"
+        android:padding="20dp"
+        android:background="#FECE2F">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/profile"
+            android:layout_centerVertical="true"/>
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="41dp"
-            android:layout_marginTop="17dp"
-            android:text="Tên"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="83dp" />
-
-        <TextView
-            android:id="@+id/txtName_profile"
+            android:id="@+id/txtName_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="16dp"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="83dp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/bungee"
+            android:layout_toRightOf="@+id/profile_image"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
     </RelativeLayout>
-
-    <RelativeLayout
+    
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="148dp">
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="41dp"
-            android:layout_marginTop="17dp"
-            android:text="Email"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="83dp" />
-
-        <TextView
-            android:id="@+id/txtMail_profile"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="101dp"
-            android:layout_marginTop="15dp"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="83dp" />
-    </RelativeLayout>
+            android:hint="Full Name"
+            android:layout_marginBottom="10dp">
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="74dp"
-        android:text="Home"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="504dp" />
-</RelativeLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/profile_small_icon"
+                android:drawablePadding="10dp"
+                android:id="@+id/txtName_profile"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email_small_icon"
+                android:drawablePadding="10dp"
+                android:id="@+id/txtMail_profile"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/back_home"
+            android:fontFamily="@font/bungee"
+            android:background="#FECE2F"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
