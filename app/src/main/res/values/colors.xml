@@ -21,5 +21,13 @@
     <color name="banner_background">#F1E9CE</color>
     <color name="banner_background_light">#56F1E9CE</color>
 
+    <color name="background1_startcolor">#1EE9C6</color>
+    <color name="background1_endcolor">#55E2CC</color>
+    <color name="background2_startcolor">#8C3DEB</color>
+    <color name="background2_endcolor">#713EAA</color>
+    <color name="background3_startcolor">#ED313F</color>
+    <color name="background3_endcolor">#C0303C</color>
+
+
 
 </resources>

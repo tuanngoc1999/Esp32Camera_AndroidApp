@@ -1,10 +1,14 @@
 package com.example.esp32app.Common;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.net.Uri;
 import android.graphics.Bitmap;
@@ -24,17 +28,21 @@ import com.example.esp32app.User.ProfileActivity;
 import com.example.esp32app.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.esp32app.Notifi.CHANNEL_1_ID;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     static final float END_SCALE = 0.7f;
 
-
+Boolean firstOpen = true;
+    private NotificationManagerCompat notificationManager;
     TextView name;
     ImageView imgView, menuIcon;
     Button btn, addFace, btnLogout;
@@ -52,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         name = findViewById(R.id.txtName);
+        notificationManager = NotificationManagerCompat.from(MainActivity.this);
         //photo = findViewById(R.id.txtPhoto);
         imgView = findViewById(R.id.imgView);
         btn = findViewById(R.id.btn);
@@ -163,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String faceName = snapshot.child("esp32-cam").child("name").getValue().toString().toUpperCase();
                 String photoBase64 = snapshot.child("esp32-cam").child("photo").getValue().toString();
                 String data = photoBase64.substring(photoBase64.indexOf(",") + 1);
-                name.setText(faceName);
+                name.setText("Hello: " + faceName);
                 //photo.setText(photoBase64);
 
                 //byte[] decod = com.example.esp32app.Base64.decode(photoBase64, 4);
@@ -171,14 +180,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Bitmap decoded = BitmapFactory.decodeByteArray(decoderString, 0, decoderString.length);
 
                 imgView.setImageBitmap(decoded);
+                if(firstOpen == false)
+                {
+                    String input ="";
+                    if (faceName.equals("NO FACE DETECTED"))
+                    {
+                        input = "Someone in the door!";
+                    } else
+                        input = faceName + " in the door!";
+
+
+                Notification notification = new NotificationCompat.Builder(MainActivity.this, CHANNEL_1_ID)
+                        .setSmallIcon(R.drawable.bell)
+                        .setContentTitle("Smartbell")
+                        .setContentText(input)
+                        .setPriority(NotificationManagerCompat.IMPORTANCE_HIGH)
+                        .build();
+                notificationManager.notify(1, notification);
+
+        }
+                firstOpen = false;
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
-    }
-
-
+}
 }
