@@ -59,6 +59,7 @@ Boolean firstOpen = true;
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        firstOpen = true;
         name = findViewById(R.id.txtName);
         notificationManager = NotificationManagerCompat.from(MainActivity.this);
         //photo = findViewById(R.id.txtPhoto);
